@@ -1,55 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- 
+  MELHORIA: Corrigido o atributo lang para "pt-BR", pois todo o conteúdo do site está em Português.
+  Isso é indispensável para motores de busca (SEO) e leitores de tela para pessoas com deficiência visual.
+-->
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MELHORIA DE SEO: Descrição que aparece nos resultados de busca do Google -->
+    <meta name="description" content="ShopFamily - O shopping virtual completo para você e sua família. Encontre as melhores ofertas, produtos de qualidade e preços que cabem no seu bolso.">
+
+    <!-- MELHORIA DE SEO / SOCIAL: Open Graph tags para compartilhamento em redes sociais (WhatsApp, LinkedIn, etc) -->
+    <meta property="og:title" content="ShopFamily | O Shopping que cabe no seu bolso">
+    <meta property="og:description" content="Encontre as melhores ofertas e produtos incríveis para toda a família em um só lugar.">
+    <meta property="og:image" content="hero-family-ptbr.png">
+    <meta property="og:type" content="website">
+
     <title>ShopFamily | O Shopping que cabe no seu bolso</title>
-    <!-- Fonte Inter para um visual mais moderno e profissional -->
+
+    <!-- Favicon para exibir o ícone da marca na aba do navegador -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Otimização de carregamento de fontes externas com preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <!-- Correção: Inclusão do arquivo CSS que estava faltando -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Link do arquivo CSS unificado e estruturado -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <a href="#" class="text-logo">ShopFamily</a>
-        </div>
 
-        <div class="links">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Lojas</a></li>
-                <li><a href="#">Sobre Nós</a></li>
-                <li><a href="#">Carrinho</a></li>
-                <li><a href="#" class="btn-login">Entrar</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- 
+      MELHORIA SEMÂNTICA: Envolvido no elemento <header>. 
+      Informa ao navegador que este é o cabeçalho principal do site.
+    -->
+    <header class="header">
+        <!-- aria-label garante acessibilidade para leitores de tela identificarem o menu -->
+        <nav class="navbar" aria-label="Navegação Principal">
+            
+            <!-- Logotipo da aplicação -->
+            <div class="logo">
+                <a href="#" class="text-logo" aria-label="ShopFamily Página Inicial">
+                    ShopFamily<span>.</span>
+                </a>
+            </div>
 
-    <!-- Correção: 'conteiner' renomeado para 'container' -->
-    <div class="container">
-        <!-- Correção: 'content' renomeado para 'text' para coincidir com o CSS -->
-        <div class="text">
-            <h1>O Shopping <span>que cabe no seu bolso</span></h1>
+            <!-- 
+              MELHORIA DE RESPONSIVIDADE: Botão do menu hambúrguer para dispositivos móveis.
+              Usa atributos ARIA para informar a leitores de tela se o menu está aberto ou fechado.
+            -->
+            <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
 
-            <p>Encontre as melhores ofertas e produtos incríveis em um só lugar para você e sua família. Compre com
-                facilidade e segurança, tudo ao alcance de um clique.</p>
-            <button type="button">Baixe nosso app</button>
-        </div>
+            <!-- Links de navegação -->
+            <div class="links" id="nav-menu">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#lojas">Lojas</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li>
+                        <!-- Badge opcional para indicar quantidade de itens no carrinho no futuro -->
+                        <a href="#carrinho" class="link-carrinho">
+                            Carrinho
+                        </a>
+                    </li>
+                    <li><a href="#login" class="btn-login">Entrar</a></li>
+                </ul>
+            </div>
 
-        <div class="photo">
-            <img src="hero-family-ptbr.png" alt="Família fazendo compras">
-        </div>
-    </div>
+        </nav>
+    </header>
 
+    <!-- 
+      MELHORIA SEMÂNTICA: A tag <main> engloba todo o conteúdo principal da página.
+      Nunca deve haver mais de um <main> visível por documento.
+    -->
+    <main>
+        
+        <!-- 
+          MELHORIA SEMÂNTICA: O Hero foi transformado em uma <section id="home">. 
+          Isso cria regiões claras de documento (Landmarks) para navegabilidade.
+        -->
+        <section id="home" class="hero">
+            <div class="container hero-container">
+                
+                <!-- Bloco de texto e chamada para ação (CTA) -->
+                <div class="hero-text">
+                    <h1>O Shopping <span class="highlight">que cabe no seu bolso</span></h1>
+
+                    <p>
+                        Encontre as melhores ofertas e produtos incríveis em um só lugar para você e sua família. 
+                        Compre com facilidade, economia e segurança, tudo ao alcance de um clique.
+                    </p>
+                    
+                    <!-- 
+                      MELHORIA DE UX: Convertido de <button> simples para um link <a> estilizado como botão, 
+                      pois sua função real é direcionar o usuário para o download da app store.
+                    -->
+                    <div class="hero-actions">
+                        <a href="#download" class="btn-primary">Baixe nosso app</a>
+                        <a href="#lojas" class="btn-secondary">Explorar ofertas</a>
+                    </div>
+                </div>
+
+                <!-- Bloco da Imagem Ilustrativa do Hero -->
+                <div class="hero-photo">
+                    <!-- 
+                      MELHORIA DE PERFORMANCE: 
+                      - fetchpriority="high": Indica ao navegador que esta imagem é prioritária (LCP).
+                      - decoding="async": Evita travamentos de renderização durante a decodificação da imagem.
+                    -->
+                    <img src="hero-family-ptbr.png" 
+                         alt="Família sorridente fazendo compras juntas usando smartphone e sacolas" 
+                         width="600" 
+                         height="500"
+                         fetchpriority="high"
+                         decoding="async">
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé Semântico com copyright e navegação secundária opcional -->
     <footer class="footer">
-        <p>&copy; 2026 ShopFamily. Todos os direitos reservados.</p>
+        <div class="container footer-container">
+            <p>&copy; 2026 ShopFamily. Todos os direitos reservados.</p>
+        </div>
     </footer>
+
+    <!-- Script para interatividade do menu mobile (se necessário) -->
+    <script src="script.js"></script>
 </body>
 
 </html>
