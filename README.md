@@ -86,7 +86,7 @@ cd shopfamily-landing-page
 ```
 3. Abra no navegador:
 
-Dê um duplo clique no arquivo index.html; OU
+Dê um duplo clique no arquivo index.html;
 
 Execute com a extensão Live Server no VS Code para uma experiência de desenvolvimento completa.
 
