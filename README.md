@@ -78,7 +78,7 @@ Como a aplicação é construída com tecnologias nativas da Web (Vanilla JS), n
 
 1. Clone o repositório:
 ```bash
-git clone [https://github.com/seu-usuario/shopfamily-landing-page.git](https://github.com/seu-usuario/shopfamily-landing-page.git)
+git clone (https://github.com/LeticiaMS89/landing-page-shopfamily.git)
 ```
 2. Navegue até a pasta do projeto:
 ```bash
