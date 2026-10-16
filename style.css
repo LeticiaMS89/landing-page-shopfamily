@@ -1,280 +1,498 @@
-/* Importação da fonte Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/**
+ * ===================================================================
+ * SHOPFAMILY LANDING PAGE - STYLESHEET PROFISSIONAL
+ * ===================================================================
+ * 
+ * Estrutura do arquivo:
+ * 1. Design Tokens & Variáveis CSS (:root)
+ * 2. Reset Global & Normalização
+ * 3. Cabeçalho & Navbar (Desktop & Mobile)
+ * 4. Seção Hero (Conteúdo Principal)
+ * 5. Botões & Elementos Interativos
+ * 6. Rodapé (Footer)
+ * 7. Animações Keyframes
+ * 8. Responsividade & Media Queries
+ * 9. Acessibilidade (Focus & Reduced Motion)
+ */
 
-/* Reset and base styles */
+/* ===================================================================
+   1. DESIGN TOKENS & VARIÁVEIS CSS (:ROOT)
+   =================================================================== */
+:root {
+  /* Paleta de Cores - Tema Dark Premium */
+  --bg-dark: #0f172a;       /* Slate 900: Fundo da página */
+  --bg-card: #1e293b;       /* Slate 800: Fundo de cards/menus */
+  --text-main: #f8fafc;     /* Slate 50: Texto principal */
+  --text-muted: #94a3b8;    /* Slate 400: Subtítulos e parágrafos */
+  --text-link: #cbd5e1;     /* Slate 300: Links da navbar */
+
+  /* Cores de Destaque e Gradientes */
+  --primary-blue: #3b82f6;
+  --primary-purple: #8b5cf6;
+  --primary-hover: #2563eb;
+  
+  --gradient-logo: linear-gradient(135deg, #60a5fa, #c084fc);
+  --gradient-brand: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --gradient-btn: linear-gradient(135deg, #3b82f6, #2563eb);
+
+  /* Dimensões e Sombras */
+  --container-max-width: 1200px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  --shadow-btn: 0 10px 25px -5px rgba(37, 99, 235, 0.4), 0 8px 10px -6px rgba(37, 99, 235, 0.1);
+  --shadow-btn-hover: 0 20px 25px -5px rgba(37, 99, 235, 0.4), 0 10px 10px -5px rgba(37, 99, 235, 0.1);
+  --glow-image: drop-shadow(0 0 40px rgba(59, 130, 246, 0.25));
+
+  /* Transições padrão */
+  --transition-normal: all 0.3s ease;
+}
+
+/* ===================================================================
+   2. RESET GLOBAL & NORMALIZAÇÃO
+   =================================================================== */
+
+/* 
+  CORREÇÃO CRÍTICA: Corrigido o erro de sintaxe original (- {) para o seletor universal (*).
+  Remove margens e paddings padrão de todos os navegadores.
+*/
 * {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
- font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Configuração do documento */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
- width: 90%;
- max-width: 1200px;
- margin: 0 auto;
- background-color: #0f172a; /* Fundo escuro premium */
- color: #f8fafc;
- overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden; /* Evita rolagem horizontal indesejada em telas menores */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Navbar */
+/* Normalização de Imagens para evitar estouro de layout */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Contêiner centralizador reutilizável */
+.container {
+  width: 90%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+/* ===================================================================
+   3. CABEÇALHO & NAVBAR
+   =================================================================== */
+.header {
+  width: 100%;
+  background-color: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px); /* Efeito de vidro (Glassmorphism) */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(248, 250, 252, 0.05);
+}
+
 .navbar {
- display: flex;
- align-items: center;
- justify-content: space-between;
- padding: 30px 0;
- animation: fadeInDown 0.8s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  width: 90%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  animation: fadeInDown 0.8s ease-out;
 }
 
-.navbar .logo {
- transition: transform 0.3s ease;
- cursor: pointer;
- display: flex;
- align-items: center;
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  transition: transform var(--transition-normal);
 }
 
-.navbar .logo:hover {
- transform: scale(1.05);
+.logo:hover {
+  transform: scale(1.03);
 }
 
-.navbar .logo .text-logo {
- font-size: 34px;
- font-weight: 800;
- text-decoration: none;
- background: linear-gradient(135deg, #60a5fa, #c084fc);
- -webkit-background-clip: text;
- -webkit-text-fill-color: transparent;
- letter-spacing: -1.5px;
- filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.4));
+.text-logo {
+  font-size: 30px;
+  font-weight: 800;
+  text-decoration: none;
+  background: var(--gradient-logo);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.3));
 }
 
-.navbar .links ul {
- list-style: none;
- display: flex;
- align-items: center;
+.text-logo span {
+  color: var(--primary-purple);
+  -webkit-text-fill-color: initial;
 }
 
-.navbar .links ul li {
- margin-left: 40px;
+/* Links da Navbar */
+.links ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 32px;
 }
 
-.navbar .links ul li a {
- text-decoration: none;
- color: #cbd5e1;
- font-size: 16px;
- font-weight: 500;
- transition: color 0.3s ease, transform 0.3s ease;
- display: inline-block;
+.links ul li a {
+  text-decoration: none;
+  color: var(--text-link);
+  font-size: 15px;
+  font-weight: 500;
+  transition: var(--transition-normal);
+  display: inline-block;
 }
 
-.navbar .links ul li a:hover {
- color: #60a5fa;
- transform: translateY(-2px);
+.links ul li a:hover,
+.links ul li a.active {
+  color: var(--primary-blue);
+  transform: translateY(-2px);
+}
+
+/* Botão de Menu Hambúrguer (Oculto no Desktop, visível no Mobile) */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-main);
+  position: relative;
+  transition: var(--transition-normal);
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-main);
+  transition: var(--transition-normal);
+}
+
+.hamburger::before { top: -7px; }
+.hamburger::after { top: 7px; }
+
+/* ===================================================================
+   4. SEÇÃO HERO (DOBRA PRINCIPAL)
+   =================================================================== */
+.hero {
+  padding: 80px 0;
+  position: relative;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 580px;
+  animation: fadeInLeft 1s ease-out;
+}
+
+.hero-text h1 {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-main);
+  letter-spacing: -1.5px;
+  margin-bottom: 24px;
+}
+
+/* Destaque em gradiente no título */
+.hero-text h1 .highlight {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Imagem da Seção Hero */
+.hero-photo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeInRight 1s ease-out;
+}
+
+.hero-photo img {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  filter: var(--glow-image);
+  transition: transform 0.5s ease, filter 0.5s ease;
+  border-radius: var(--radius-lg);
+}
+
+.hero-photo img:hover {
+  transform: translateY(-8px);
+  filter: drop-shadow(0 0 50px rgba(139, 92, 246, 0.35));
+}
+
+/* ===================================================================
+   5. BOTÕES & ELEMENTOS INTERATIVOS
+   =================================================================== */
+
+/* Botão Principal Chamativo (CTA) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  background: var(--gradient-btn);
+  color: white;
+  box-shadow: var(--shadow-btn);
+  transition: var(--transition-normal);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-btn-hover);
+}
+
+/* Botão Secundário */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  border: 1px solid rgba(248, 250, 252, 0.1);
+  transition: var(--transition-normal);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 /* Botão Entrar na Navbar */
-.navbar .links ul li a.btn-login {
- background: linear-gradient(135deg, #3b82f6, #2563eb);
- color: white;
- padding: 10px 28px;
- border-radius: 999px;
- box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
- transition: all 0.3s ease;
- font-weight: 600;
+.btn-login {
+  background: var(--gradient-btn) !important;
+  color: white !important;
+  padding: 10px 24px !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.3) !important;
+  font-weight: 600 !important;
 }
 
-.navbar .links ul li a.btn-login:hover {
- box-shadow: 0 6px 20px rgba(37, 99, 235, 0.23);
- transform: translateY(-2px) scale(1.05);
- color: white;
+.btn-login:hover {
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4) !important;
+  transform: translateY(-2px) scale(1.02) !important;
 }
 
-/* Container Principal */
-.container {
- padding-top: 80px;
- padding-bottom: 80px;
- display: flex;
- align-items: center;
- justify-content: space-between;
- width: 100%;
- gap: 40px;
-}
-
-/* Texto */
-.container .text {
- width: 50%;
- animation: fadeInLeft 1s ease-out;
-}
-
-.container .text h1 {
- font-size: 64px;
- font-weight: 800;
- line-height: 1.1;
- color: #f8fafc;
- letter-spacing: -1.5px;
- margin-bottom: 24px;
-}
-
-/* Destaque no título com gradiente */
-.container .text h1 span {
- font-weight: 800;
- background: linear-gradient(135deg, #3b82f6, #8b5cf6);
- -webkit-background-clip: text;
- -webkit-text-fill-color: transparent;
-}
-
-.container .text p {
- font-size: 18px;
- line-height: 1.6;
- color: #94a3b8;
- margin-bottom: 40px;
- max-width: 90%;
- font-weight: 400;
-}
-
-/* Botão Principal */
-.container .text button {
- padding: 18px 40px;
- font-size: 18px;
- font-weight: 600;
- border: none;
- outline: none;
- border-radius: 999px;
- background: linear-gradient(135deg, #3b82f6, #2563eb);
- color: white;
- cursor: pointer;
- box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4), 0 8px 10px -6px rgba(37, 99, 235, 0.1);
- transition: all 0.3s ease;
-}
-
-.container .text button:hover {
- transform: translateY(-4px);
- box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4), 0 10px 10px -5px rgba(37, 99, 235, 0.1);
-}
-
-/* Imagem */
-.container .photo {
- width: 50%;
- display: flex;
- justify-content: flex-end;
- animation: fadeInRight 1s ease-out;
-}
-
-.container .photo img {
- width: 100%;
- max-width: 580px;
- filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.2));
- transition: transform 0.5s ease, filter 0.5s ease;
- border-radius: 20px;
-}
-
-.container .photo img:hover {
- transform: translateY(-10px);
- filter: drop-shadow(0 0 50px rgba(139, 92, 246, 0.4));
-}
-
-/* Footer */
+/* ===================================================================
+   6. RODAPÉ (FOOTER)
+   =================================================================== */
 .footer {
- width: 100%;
- padding: 30px 0;
- text-align: center;
- border-top: 1px solid rgba(248, 250, 252, 0.05);
- margin-top: 20px;
+  width: 100%;
+  padding: 30px 0;
+  border-top: 1px solid rgba(248, 250, 252, 0.05);
+  margin-top: 40px;
+}
+
+.footer-container {
+  text-align: center;
 }
 
 .footer p {
- color: #64748b;
- font-size: 14px;
- font-weight: 400;
+  color: var(--text-muted);
+  font-size: 14px;
 }
 
-/* Animations */
+/* ===================================================================
+   7. ANIMAÇÕES KEYFRAMES
+   =================================================================== */
 @keyframes fadeInDown {
- from { opacity: 0; transform: translateY(-20px); }
- to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInLeft {
- from { opacity: 0; transform: translateX(-30px); }
- to { opacity: 1; transform: translateX(0); }
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeInRight {
- from { opacity: 0; transform: translateX(30px); }
- to { opacity: 1; transform: translateX(0); }
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* Responsividade para telas menores */
+/* ===================================================================
+   8. RESPONSIVIDADE & MEDIA QUERIES
+   =================================================================== */
+
+/* Tablets e Notebooks Pequenos (<= 968px) */
 @media (max-width: 968px) {
- .container {
-  flex-direction: column;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  text-align: center;
- }
- .container .text, .container .photo {
-  width: 100%;
- }
- .container .text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
- }
- .container .text p {
-  max-width: 100%;
- }
- .navbar .links ul li {
-  margin-left: 20px;
- }
- .container .text h1 {
-  font-size: 48px;
- }
+  .hero {
+    padding: 40px 0;
+  }
+
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 48px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-text h1 {
+    font-size: 44px;
+  }
+
+  .hero-photo {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-photo img {
+    max-width: 460px;
+  }
 }
 
+/* Smartphones e Dispositivos Móveis (<= 768px) */
 @media (max-width: 768px) {
- .navbar {
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px 0;
- }
- .navbar .logo {
-  width: 120px;
- }
- .navbar .links ul {
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
- }
- .navbar .links ul li {
-  margin-left: 0;
- }
- .navbar .links ul li a {
-  font-size: 14px;
- }
- .container .text h1 {
-  font-size: 36px;
- }
- .container .text p {
-  font-size: 16px;
- }
- .container .text button {
-  padding: 15px 30px;
-  font-size: 16px;
-  width: 100%;
-  max-width: 300px;
- }
+  /* Ativa o botão hambúrguer no mobile */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Transforma os links em um menu gaveta (drawer) suspenso */
+  .links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-card);
+    padding: 24px;
+    border-bottom: 1px solid rgba(248, 250, 252, 0.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    
+    /* Inicialmente oculto */
+    display: none;
+  }
+
+  /* Classe ativada via JS para exibir o menu mobile */
+  .links.active {
+    display: block;
+    animation: fadeInDown 0.3s ease-out;
+  }
+
+  .links ul {
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+  }
 }
 
+/* Smartphones Pequenos (<= 480px) */
 @media (max-width: 480px) {
- .container .text h1 {
-  font-size: 32px;
- }
- .navbar .links ul {
-  gap: 12px;
-  flex-direction: column;
- }
- .navbar .links ul li a.btn-login {
-  margin-top: 5px;
- }
+  .hero-text h1 {
+    font-size: 30px;
+  }
+
+  .hero-text p {
+    font-size: 15px;
+  }
+
+  .text-logo {
+    font-size: 24px;
+  }
+}
+
+/* ===================================================================
+   9. ACESSIBILIDADE & PREFERÊNCIAS DO USUÁRIO
+   =================================================================== */
+
+/* Destaque de foco visível para navegação por teclado (Tab) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 4px;
+}
+
+/* Desativa animações se o usuário configurou 'reducion-motion' no sistema */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
